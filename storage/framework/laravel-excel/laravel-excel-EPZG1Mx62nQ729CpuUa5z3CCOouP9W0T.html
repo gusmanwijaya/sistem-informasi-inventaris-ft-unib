@@ -1,0 +1,3790 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>    Data Barang - SI Inventaris Barang FT UNIB
+</title>
+
+    
+        
+    <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"/>
+
+    
+    <link rel="stylesheet" href="/vendor/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="/vendor/datatables-buttons/css/buttons.bootstrap4.min.css">
+    
+    
+    
+    <!-- Custom fonts for this template-->
+<link
+    href="/vendor/fontawesome-free/css/all.min.css"
+    rel="stylesheet"
+    type="text/css"
+/>
+<link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet"
+/>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+<!-- Custom styles for this template-->
+<link href="/css/si-inventaris.css" rel="stylesheet" />
+    
+  </head>
+
+  <body id="page-top">
+    <div id="wrapper">
+      
+      <ul
+class="navbar-nav bg-royal-blue sidebar sidebar-dark accordion"
+id="accordionSidebar"
+data-aos="fade-right"
+>
+    <!-- Sidebar - Brand -->
+    <a
+        class="sidebar-brand d-flex align-items-center justify-content-center"
+        href=""
+    >
+        <div class="sidebar-brand-icon">
+        <i class="fas fa-user-tie"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Admin</div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0" />
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item 
+         
+            ">
+        <a class="nav-link" href="
+             http://127.0.0.1:8000/dashboard-admin
+                    ">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Dashboard</span></a
+        >
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider" />
+
+    <!-- Heading -->
+    <div class="sidebar-heading">Manajemen</div>
+
+    <!-- Nav Item - Data Barang -->
+    <li class="nav-item 
+         
+            ">
+        <a class="nav-link" href="
+             http://127.0.0.1:8000/data-barang-admin
+                    ">
+        <i class="fas fa-fw fa-table"></i>
+        <span>Data Barang</span></a
+        >
+    </li>
+
+    <!-- Nav Item - Data Ruangan -->
+    <li class="nav-item 
+         
+            ">
+        <a class="nav-link" href="
+             http://127.0.0.1:8000/data-ruangan-admin
+                    ">
+        <i class="fas fa-fw fa-folder"></i>
+        <span>Data Ruangan</span></a
+        >
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block" />
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+</ul>
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content" class="content">
+            
+            <!-- Navbar (Topbar) -->
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+    <!-- Sidebar Toggle (Topbar) -->
+    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+        <i class="fa fa-bars"></i>
+    </button>
+
+    <!-- Topbar Navbar -->
+    <ul class="navbar-nav ml-auto">
+        <div class="topbar-divider d-none d-sm-block"></div>
+
+        <!-- Nav Item - User Information -->
+        <li class="nav-item dropdown no-arrow">
+            <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="userDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+            >
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"
+                >Admin</span
+                >
+                <i class="fas fa-user-tie"></i>
+            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a
+                class="dropdown-item"
+                href="#"
+                data-toggle="modal"
+                data-target="#logoutModal"
+                >
+                <i
+                    class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"
+                ></i>
+                Logout
+                </a>
+            </div>
+        </li>
+    </ul>
+</nav>
+            
+            <!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Page Heading -->
+<h1 class="h3 mb-3 text-gray-800">Data Asset (Barang)</h1>
+<div class="row justify-content-start align-items-center mb-2 ml-1">
+    <a
+        data-toggle="modal"
+        data-target="#tambahBarangModal"
+        href="#"
+        data-aos="fade-left"
+        class="btn btn-sm btn-export"
+        ><i class="fas fa-plus p-1"></i> Tambah</a>
+    <a
+        data-toggle="modal"
+        data-target="#importExcelModal"
+        href="#"
+        data-aos="fade-left"
+        class="btn btn-sm btn-tambah ml-3"
+        ><i class="fas fa-file-excel p-1"></i> Import .xls</a>
+    <a
+        href="/data-barang-admin/export"
+        data-aos="fade-left"
+        class="btn btn-sm btn-tambah ml-3"
+        ><i class="fas fa-file-excel p-1"></i> Export .xls</a>
+    <a
+        href="#"
+        data-aos="fade-left"
+        class="btn btn-sm btn-pdf ml-3"
+        ><i class="far fa-file-pdf p-1"></i> Export .pdf</a>
+    <a
+        href="#"
+        data-aos="fade-left"
+        class="btn btn-sm btn-print ml-3"
+        ><i class="fas fa-print p-1"></i> Print</a>
+</div>
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+    <div class="table-responsive">
+        <table
+        class="table table-bordered"
+        id="dataTableBarang"
+        width="100%"
+        cellspacing="0"
+        >
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Asset</th>
+                <th>Nomor Asset</th>
+                <th>Tahun Perolehan</th>
+                <th>Ruangan</th>
+                <th>Kondisi</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+                                    <tr>
+                <td>1</td>
+                <td>Kursi</td>
+                <td>1332</td>
+                <td>2019</td>
+                <td>Lab Teknik Arsitektur</td>
+                <td>Buruk</td>
+                <td>
+                    <div class="row justify-content-center">
+                        <a href="#" class="mr-2" data-toggle="modal" 
+                            data-target="#editBarangModal-5"
+                        ><i class="far fa-edit ml-0 edit-icon"></i
+                        ></a>
+                        <a
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#deleteModal-5"
+                        ><i class="far fa-trash-alt ml-1 delete-icon"></i
+                        ></a>
+                    </div>
+                </td>
+            </tr>
+                        <tr>
+                <td>2</td>
+                <td>AC</td>
+                <td>1122</td>
+                <td>2017</td>
+                <td>Lab Teknik Sipil</td>
+                <td>Baik</td>
+                <td>
+                    <div class="row justify-content-center">
+                        <a href="#" class="mr-2" data-toggle="modal" 
+                            data-target="#editBarangModal-6"
+                        ><i class="far fa-edit ml-0 edit-icon"></i
+                        ></a>
+                        <a
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#deleteModal-6"
+                        ><i class="far fa-trash-alt ml-1 delete-icon"></i
+                        ></a>
+                    </div>
+                </td>
+            </tr>
+                        <tr>
+                <td>3</td>
+                <td>Sofa</td>
+                <td>3311</td>
+                <td>2015</td>
+                <td>Lab Teknik Mesin</td>
+                <td>Buruk</td>
+                <td>
+                    <div class="row justify-content-center">
+                        <a href="#" class="mr-2" data-toggle="modal" 
+                            data-target="#editBarangModal-7"
+                        ><i class="far fa-edit ml-0 edit-icon"></i
+                        ></a>
+                        <a
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#deleteModal-7"
+                        ><i class="far fa-trash-alt ml-1 delete-icon"></i
+                        ></a>
+                    </div>
+                </td>
+            </tr>
+                        <tr>
+                <td>4</td>
+                <td>Lemari</td>
+                <td>4115</td>
+                <td>2014</td>
+                <td>Lab Sistem Informasi</td>
+                <td>Baik</td>
+                <td>
+                    <div class="row justify-content-center">
+                        <a href="#" class="mr-2" data-toggle="modal" 
+                            data-target="#editBarangModal-8"
+                        ><i class="far fa-edit ml-0 edit-icon"></i
+                        ></a>
+                        <a
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#deleteModal-8"
+                        ><i class="far fa-trash-alt ml-1 delete-icon"></i
+                        ></a>
+                    </div>
+                </td>
+            </tr>
+                        <tr>
+                <td>5</td>
+                <td>Hordeng</td>
+                <td>1001</td>
+                <td>2018</td>
+                <td>Lab Teknik Elektro</td>
+                <td>Buruk</td>
+                <td>
+                    <div class="row justify-content-center">
+                        <a href="#" class="mr-2" data-toggle="modal" 
+                            data-target="#editBarangModal-9"
+                        ><i class="far fa-edit ml-0 edit-icon"></i
+                        ></a>
+                        <a
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#deleteModal-9"
+                        ><i class="far fa-trash-alt ml-1 delete-icon"></i
+                        ></a>
+                    </div>
+                </td>
+            </tr>
+                        <tr>
+                <td>6</td>
+                <td>Komputer</td>
+                <td>1564</td>
+                <td>2020</td>
+                <td>Lab Teknik Informatika</td>
+                <td>Baik</td>
+                <td>
+                    <div class="row justify-content-center">
+                        <a href="#" class="mr-2" data-toggle="modal" 
+                            data-target="#editBarangModal-10"
+                        ><i class="far fa-edit ml-0 edit-icon"></i
+                        ></a>
+                        <a
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#deleteModal-10"
+                        ><i class="far fa-trash-alt ml-1 delete-icon"></i
+                        ></a>
+                    </div>
+                </td>
+            </tr>
+                        <tr>
+                <td>7</td>
+                <td>Mouse</td>
+                <td>1980</td>
+                <td>2020</td>
+                <td>Lab Teknik Informatika</td>
+                <td>Baik</td>
+                <td>
+                    <div class="row justify-content-center">
+                        <a href="#" class="mr-2" data-toggle="modal" 
+                            data-target="#editBarangModal-11"
+                        ><i class="far fa-edit ml-0 edit-icon"></i
+                        ></a>
+                        <a
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#deleteModal-11"
+                        ><i class="far fa-trash-alt ml-1 delete-icon"></i
+                        ></a>
+                    </div>
+                </td>
+            </tr>
+                        <tr>
+                <td>8</td>
+                <td>Meja</td>
+                <td>1144</td>
+                <td>2015</td>
+                <td>Lab Sistem Informasi</td>
+                <td>Buruk</td>
+                <td>
+                    <div class="row justify-content-center">
+                        <a href="#" class="mr-2" data-toggle="modal" 
+                            data-target="#editBarangModal-12"
+                        ><i class="far fa-edit ml-0 edit-icon"></i
+                        ></a>
+                        <a
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#deleteModal-12"
+                        ><i class="far fa-trash-alt ml-1 delete-icon"></i
+                        ></a>
+                    </div>
+                </td>
+            </tr>
+                        <tr>
+                <td>9</td>
+                <td>TV</td>
+                <td>4111</td>
+                <td>2018</td>
+                <td>Lab Teknik Informatika</td>
+                <td>Baik</td>
+                <td>
+                    <div class="row justify-content-center">
+                        <a href="#" class="mr-2" data-toggle="modal" 
+                            data-target="#editBarangModal-13"
+                        ><i class="far fa-edit ml-0 edit-icon"></i
+                        ></a>
+                        <a
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#deleteModal-13"
+                        ><i class="far fa-trash-alt ml-1 delete-icon"></i
+                        ></a>
+                    </div>
+                </td>
+            </tr>
+                        <tr>
+                <td>10</td>
+                <td>Speaker</td>
+                <td>5513</td>
+                <td>2017</td>
+                <td>Lab Teknik Informatika</td>
+                <td>Buruk</td>
+                <td>
+                    <div class="row justify-content-center">
+                        <a href="#" class="mr-2" data-toggle="modal" 
+                            data-target="#editBarangModal-14"
+                        ><i class="far fa-edit ml-0 edit-icon"></i
+                        ></a>
+                        <a
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#deleteModal-14"
+                        ><i class="far fa-trash-alt ml-1 delete-icon"></i
+                        ></a>
+                    </div>
+                </td>
+            </tr>
+                        <tr>
+                <td>11</td>
+                <td>Rak Buku</td>
+                <td>9614</td>
+                <td>2016</td>
+                <td>Lab Teknik Arsitektur</td>
+                <td>Buruk</td>
+                <td>
+                    <div class="row justify-content-center">
+                        <a href="#" class="mr-2" data-toggle="modal" 
+                            data-target="#editBarangModal-15"
+                        ><i class="far fa-edit ml-0 edit-icon"></i
+                        ></a>
+                        <a
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#deleteModal-15"
+                        ><i class="far fa-trash-alt ml-1 delete-icon"></i
+                        ></a>
+                    </div>
+                </td>
+            </tr>
+                        <tr>
+                <td>12</td>
+                <td>Monitor</td>
+                <td>1339</td>
+                <td>2020</td>
+                <td>Lab Teknik Informatika</td>
+                <td>Baik</td>
+                <td>
+                    <div class="row justify-content-center">
+                        <a href="#" class="mr-2" data-toggle="modal" 
+                            data-target="#editBarangModal-16"
+                        ><i class="far fa-edit ml-0 edit-icon"></i
+                        ></a>
+                        <a
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#deleteModal-16"
+                        ><i class="far fa-trash-alt ml-1 delete-icon"></i
+                        ></a>
+                    </div>
+                </td>
+            </tr>
+                        <tr>
+                <td>13</td>
+                <td>Pot Bunga</td>
+                <td>7781</td>
+                <td>2012</td>
+                <td>Lab Teknik Sipil</td>
+                <td>Baik</td>
+                <td>
+                    <div class="row justify-content-center">
+                        <a href="#" class="mr-2" data-toggle="modal" 
+                            data-target="#editBarangModal-17"
+                        ><i class="far fa-edit ml-0 edit-icon"></i
+                        ></a>
+                        <a
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#deleteModal-17"
+                        ><i class="far fa-trash-alt ml-1 delete-icon"></i
+                        ></a>
+                    </div>
+                </td>
+            </tr>
+                        <tr>
+                <td>14</td>
+                <td>Kipas Angin</td>
+                <td>7813</td>
+                <td>2019</td>
+                <td>Lab Teknik Arsitektur</td>
+                <td>Buruk</td>
+                <td>
+                    <div class="row justify-content-center">
+                        <a href="#" class="mr-2" data-toggle="modal" 
+                            data-target="#editBarangModal-26"
+                        ><i class="far fa-edit ml-0 edit-icon"></i
+                        ></a>
+                        <a
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#deleteModal-26"
+                        ><i class="far fa-trash-alt ml-1 delete-icon"></i
+                        ></a>
+                    </div>
+                </td>
+            </tr>
+                        <tr>
+                <td>15</td>
+                <td>Sapu</td>
+                <td>6890</td>
+                <td>2017</td>
+                <td>Lab Teknik Informatika</td>
+                <td>Baik</td>
+                <td>
+                    <div class="row justify-content-center">
+                        <a href="#" class="mr-2" data-toggle="modal" 
+                            data-target="#editBarangModal-27"
+                        ><i class="far fa-edit ml-0 edit-icon"></i
+                        ></a>
+                        <a
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#deleteModal-27"
+                        ><i class="far fa-trash-alt ml-1 delete-icon"></i
+                        ></a>
+                    </div>
+                </td>
+            </tr>
+                        <tr>
+                <td>16</td>
+                <td>Stavolt</td>
+                <td>4820</td>
+                <td>2015</td>
+                <td>Lab Teknik Mesin</td>
+                <td>Baik</td>
+                <td>
+                    <div class="row justify-content-center">
+                        <a href="#" class="mr-2" data-toggle="modal" 
+                            data-target="#editBarangModal-28"
+                        ><i class="far fa-edit ml-0 edit-icon"></i
+                        ></a>
+                        <a
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#deleteModal-28"
+                        ><i class="far fa-trash-alt ml-1 delete-icon"></i
+                        ></a>
+                    </div>
+                </td>
+            </tr>
+                        <tr>
+                <td>17</td>
+                <td>Kulkas</td>
+                <td>4056</td>
+                <td>2019</td>
+                <td>Lab Teknik Arsitektur</td>
+                <td>Buruk</td>
+                <td>
+                    <div class="row justify-content-center">
+                        <a href="#" class="mr-2" data-toggle="modal" 
+                            data-target="#editBarangModal-29"
+                        ><i class="far fa-edit ml-0 edit-icon"></i
+                        ></a>
+                        <a
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#deleteModal-29"
+                        ><i class="far fa-trash-alt ml-1 delete-icon"></i
+                        ></a>
+                    </div>
+                </td>
+            </tr>
+                        <tr>
+                <td>18</td>
+                <td>Jam Dinding</td>
+                <td>8401</td>
+                <td>2017</td>
+                <td>Lab Teknik Informatika</td>
+                <td>Baik</td>
+                <td>
+                    <div class="row justify-content-center">
+                        <a href="#" class="mr-2" data-toggle="modal" 
+                            data-target="#editBarangModal-30"
+                        ><i class="far fa-edit ml-0 edit-icon"></i
+                        ></a>
+                        <a
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#deleteModal-30"
+                        ><i class="far fa-trash-alt ml-1 delete-icon"></i
+                        ></a>
+                    </div>
+                </td>
+            </tr>
+                        <tr>
+                <td>19</td>
+                <td>Kompor</td>
+                <td>1084</td>
+                <td>2015</td>
+                <td>Lab Teknik Mesin</td>
+                <td>Baik</td>
+                <td>
+                    <div class="row justify-content-center">
+                        <a href="#" class="mr-2" data-toggle="modal" 
+                            data-target="#editBarangModal-31"
+                        ><i class="far fa-edit ml-0 edit-icon"></i
+                        ></a>
+                        <a
+                        href="#"
+                        data-toggle="modal"
+                        data-target="#deleteModal-31"
+                        ><i class="far fa-trash-alt ml-1 delete-icon"></i
+                        ></a>
+                    </div>
+                </td>
+            </tr>
+                    </tbody>
+        </table>
+    </div>
+    </div>
+</div>
+</div>
+        </div>
+        <!-- End of Main Content -->
+
+        
+        <!-- Footer -->
+<footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Informatika'18 2020</span>
+        </div>
+    </div>
+</footer>
+
+      </div>
+      <!-- End of Content Wrapper -->
+    </div>
+
+    <!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+    
+    <!-- Logout Modal-->
+<div
+    class="modal fade"
+    id="logoutModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Keluar Aplikasi?</h5>
+        <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+        >
+            <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        Tekan "Logout" untuk keluar dari aplikasi.
+        </div>
+        <div class="modal-footer">
+        <button
+            class="btn btn-secondary"
+            type="button"
+            data-dismiss="modal"
+        >
+            Batal
+        </button>
+        <a class="btn btn-logout" href="/logout">Logout</a>
+        </div>
+    </div>
+    </div>
+</div>        <!-- Modal -->
+<div class="modal fade" id="importExcelModal" tabindex="-1" aria-labelledby="importExcelModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="importExcelModalLabel">Import Excel</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group ">
+            <form method="POST" action="http://127.0.0.1:8000/data-barang-admin/import" accept-charset="UTF-8" name="import_excel" id="import_excel" class="form-horizontal" enctype="multipart/form-data"><input name="_token" type="hidden" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+        
+            <input name="data-barang" type="file">
+          </div>
+      </div>
+      <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+            <button type="submit" class="btn btn-tambah" value="Import">Import</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- Delete Modal-->
+<div
+    class="modal fade"
+    id="deleteModal-5"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus data?</h5>
+        <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+        >
+            <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <span class="text-danger">
+            Data yang sudah dihapus, tidak dapat dikembalikan lagi!
+        </span>
+        <br />
+        Tekan "Hapus" untuk menghapus data.
+        </div>
+        <div class="modal-footer">
+        <button
+            class="btn btn-secondary"
+            type="button"
+            data-dismiss="modal"
+        >
+            Batal
+        </button>
+        <form action="/data-barang-admin/hapus-5" method="POST">
+            <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+            <button type="submit" class="btn btn-logout">Hapus</button>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- Delete Modal-->
+<div
+    class="modal fade"
+    id="deleteModal-6"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus data?</h5>
+        <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+        >
+            <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <span class="text-danger">
+            Data yang sudah dihapus, tidak dapat dikembalikan lagi!
+        </span>
+        <br />
+        Tekan "Hapus" untuk menghapus data.
+        </div>
+        <div class="modal-footer">
+        <button
+            class="btn btn-secondary"
+            type="button"
+            data-dismiss="modal"
+        >
+            Batal
+        </button>
+        <form action="/data-barang-admin/hapus-6" method="POST">
+            <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+            <button type="submit" class="btn btn-logout">Hapus</button>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- Delete Modal-->
+<div
+    class="modal fade"
+    id="deleteModal-7"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus data?</h5>
+        <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+        >
+            <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <span class="text-danger">
+            Data yang sudah dihapus, tidak dapat dikembalikan lagi!
+        </span>
+        <br />
+        Tekan "Hapus" untuk menghapus data.
+        </div>
+        <div class="modal-footer">
+        <button
+            class="btn btn-secondary"
+            type="button"
+            data-dismiss="modal"
+        >
+            Batal
+        </button>
+        <form action="/data-barang-admin/hapus-7" method="POST">
+            <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+            <button type="submit" class="btn btn-logout">Hapus</button>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- Delete Modal-->
+<div
+    class="modal fade"
+    id="deleteModal-8"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus data?</h5>
+        <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+        >
+            <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <span class="text-danger">
+            Data yang sudah dihapus, tidak dapat dikembalikan lagi!
+        </span>
+        <br />
+        Tekan "Hapus" untuk menghapus data.
+        </div>
+        <div class="modal-footer">
+        <button
+            class="btn btn-secondary"
+            type="button"
+            data-dismiss="modal"
+        >
+            Batal
+        </button>
+        <form action="/data-barang-admin/hapus-8" method="POST">
+            <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+            <button type="submit" class="btn btn-logout">Hapus</button>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- Delete Modal-->
+<div
+    class="modal fade"
+    id="deleteModal-9"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus data?</h5>
+        <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+        >
+            <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <span class="text-danger">
+            Data yang sudah dihapus, tidak dapat dikembalikan lagi!
+        </span>
+        <br />
+        Tekan "Hapus" untuk menghapus data.
+        </div>
+        <div class="modal-footer">
+        <button
+            class="btn btn-secondary"
+            type="button"
+            data-dismiss="modal"
+        >
+            Batal
+        </button>
+        <form action="/data-barang-admin/hapus-9" method="POST">
+            <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+            <button type="submit" class="btn btn-logout">Hapus</button>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- Delete Modal-->
+<div
+    class="modal fade"
+    id="deleteModal-10"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus data?</h5>
+        <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+        >
+            <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <span class="text-danger">
+            Data yang sudah dihapus, tidak dapat dikembalikan lagi!
+        </span>
+        <br />
+        Tekan "Hapus" untuk menghapus data.
+        </div>
+        <div class="modal-footer">
+        <button
+            class="btn btn-secondary"
+            type="button"
+            data-dismiss="modal"
+        >
+            Batal
+        </button>
+        <form action="/data-barang-admin/hapus-10" method="POST">
+            <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+            <button type="submit" class="btn btn-logout">Hapus</button>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- Delete Modal-->
+<div
+    class="modal fade"
+    id="deleteModal-11"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus data?</h5>
+        <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+        >
+            <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <span class="text-danger">
+            Data yang sudah dihapus, tidak dapat dikembalikan lagi!
+        </span>
+        <br />
+        Tekan "Hapus" untuk menghapus data.
+        </div>
+        <div class="modal-footer">
+        <button
+            class="btn btn-secondary"
+            type="button"
+            data-dismiss="modal"
+        >
+            Batal
+        </button>
+        <form action="/data-barang-admin/hapus-11" method="POST">
+            <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+            <button type="submit" class="btn btn-logout">Hapus</button>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- Delete Modal-->
+<div
+    class="modal fade"
+    id="deleteModal-12"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus data?</h5>
+        <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+        >
+            <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <span class="text-danger">
+            Data yang sudah dihapus, tidak dapat dikembalikan lagi!
+        </span>
+        <br />
+        Tekan "Hapus" untuk menghapus data.
+        </div>
+        <div class="modal-footer">
+        <button
+            class="btn btn-secondary"
+            type="button"
+            data-dismiss="modal"
+        >
+            Batal
+        </button>
+        <form action="/data-barang-admin/hapus-12" method="POST">
+            <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+            <button type="submit" class="btn btn-logout">Hapus</button>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- Delete Modal-->
+<div
+    class="modal fade"
+    id="deleteModal-13"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus data?</h5>
+        <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+        >
+            <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <span class="text-danger">
+            Data yang sudah dihapus, tidak dapat dikembalikan lagi!
+        </span>
+        <br />
+        Tekan "Hapus" untuk menghapus data.
+        </div>
+        <div class="modal-footer">
+        <button
+            class="btn btn-secondary"
+            type="button"
+            data-dismiss="modal"
+        >
+            Batal
+        </button>
+        <form action="/data-barang-admin/hapus-13" method="POST">
+            <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+            <button type="submit" class="btn btn-logout">Hapus</button>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- Delete Modal-->
+<div
+    class="modal fade"
+    id="deleteModal-14"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus data?</h5>
+        <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+        >
+            <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <span class="text-danger">
+            Data yang sudah dihapus, tidak dapat dikembalikan lagi!
+        </span>
+        <br />
+        Tekan "Hapus" untuk menghapus data.
+        </div>
+        <div class="modal-footer">
+        <button
+            class="btn btn-secondary"
+            type="button"
+            data-dismiss="modal"
+        >
+            Batal
+        </button>
+        <form action="/data-barang-admin/hapus-14" method="POST">
+            <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+            <button type="submit" class="btn btn-logout">Hapus</button>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- Delete Modal-->
+<div
+    class="modal fade"
+    id="deleteModal-15"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus data?</h5>
+        <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+        >
+            <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <span class="text-danger">
+            Data yang sudah dihapus, tidak dapat dikembalikan lagi!
+        </span>
+        <br />
+        Tekan "Hapus" untuk menghapus data.
+        </div>
+        <div class="modal-footer">
+        <button
+            class="btn btn-secondary"
+            type="button"
+            data-dismiss="modal"
+        >
+            Batal
+        </button>
+        <form action="/data-barang-admin/hapus-15" method="POST">
+            <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+            <button type="submit" class="btn btn-logout">Hapus</button>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- Delete Modal-->
+<div
+    class="modal fade"
+    id="deleteModal-16"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus data?</h5>
+        <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+        >
+            <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <span class="text-danger">
+            Data yang sudah dihapus, tidak dapat dikembalikan lagi!
+        </span>
+        <br />
+        Tekan "Hapus" untuk menghapus data.
+        </div>
+        <div class="modal-footer">
+        <button
+            class="btn btn-secondary"
+            type="button"
+            data-dismiss="modal"
+        >
+            Batal
+        </button>
+        <form action="/data-barang-admin/hapus-16" method="POST">
+            <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+            <button type="submit" class="btn btn-logout">Hapus</button>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- Delete Modal-->
+<div
+    class="modal fade"
+    id="deleteModal-17"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus data?</h5>
+        <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+        >
+            <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <span class="text-danger">
+            Data yang sudah dihapus, tidak dapat dikembalikan lagi!
+        </span>
+        <br />
+        Tekan "Hapus" untuk menghapus data.
+        </div>
+        <div class="modal-footer">
+        <button
+            class="btn btn-secondary"
+            type="button"
+            data-dismiss="modal"
+        >
+            Batal
+        </button>
+        <form action="/data-barang-admin/hapus-17" method="POST">
+            <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+            <button type="submit" class="btn btn-logout">Hapus</button>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- Delete Modal-->
+<div
+    class="modal fade"
+    id="deleteModal-26"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus data?</h5>
+        <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+        >
+            <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <span class="text-danger">
+            Data yang sudah dihapus, tidak dapat dikembalikan lagi!
+        </span>
+        <br />
+        Tekan "Hapus" untuk menghapus data.
+        </div>
+        <div class="modal-footer">
+        <button
+            class="btn btn-secondary"
+            type="button"
+            data-dismiss="modal"
+        >
+            Batal
+        </button>
+        <form action="/data-barang-admin/hapus-26" method="POST">
+            <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+            <button type="submit" class="btn btn-logout">Hapus</button>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- Delete Modal-->
+<div
+    class="modal fade"
+    id="deleteModal-27"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus data?</h5>
+        <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+        >
+            <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <span class="text-danger">
+            Data yang sudah dihapus, tidak dapat dikembalikan lagi!
+        </span>
+        <br />
+        Tekan "Hapus" untuk menghapus data.
+        </div>
+        <div class="modal-footer">
+        <button
+            class="btn btn-secondary"
+            type="button"
+            data-dismiss="modal"
+        >
+            Batal
+        </button>
+        <form action="/data-barang-admin/hapus-27" method="POST">
+            <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+            <button type="submit" class="btn btn-logout">Hapus</button>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- Delete Modal-->
+<div
+    class="modal fade"
+    id="deleteModal-28"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus data?</h5>
+        <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+        >
+            <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <span class="text-danger">
+            Data yang sudah dihapus, tidak dapat dikembalikan lagi!
+        </span>
+        <br />
+        Tekan "Hapus" untuk menghapus data.
+        </div>
+        <div class="modal-footer">
+        <button
+            class="btn btn-secondary"
+            type="button"
+            data-dismiss="modal"
+        >
+            Batal
+        </button>
+        <form action="/data-barang-admin/hapus-28" method="POST">
+            <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+            <button type="submit" class="btn btn-logout">Hapus</button>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- Delete Modal-->
+<div
+    class="modal fade"
+    id="deleteModal-29"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus data?</h5>
+        <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+        >
+            <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <span class="text-danger">
+            Data yang sudah dihapus, tidak dapat dikembalikan lagi!
+        </span>
+        <br />
+        Tekan "Hapus" untuk menghapus data.
+        </div>
+        <div class="modal-footer">
+        <button
+            class="btn btn-secondary"
+            type="button"
+            data-dismiss="modal"
+        >
+            Batal
+        </button>
+        <form action="/data-barang-admin/hapus-29" method="POST">
+            <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+            <button type="submit" class="btn btn-logout">Hapus</button>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- Delete Modal-->
+<div
+    class="modal fade"
+    id="deleteModal-30"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus data?</h5>
+        <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+        >
+            <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <span class="text-danger">
+            Data yang sudah dihapus, tidak dapat dikembalikan lagi!
+        </span>
+        <br />
+        Tekan "Hapus" untuk menghapus data.
+        </div>
+        <div class="modal-footer">
+        <button
+            class="btn btn-secondary"
+            type="button"
+            data-dismiss="modal"
+        >
+            Batal
+        </button>
+        <form action="/data-barang-admin/hapus-30" method="POST">
+            <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+            <button type="submit" class="btn btn-logout">Hapus</button>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- Delete Modal-->
+<div
+    class="modal fade"
+    id="deleteModal-31"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus data?</h5>
+        <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+        >
+            <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <span class="text-danger">
+            Data yang sudah dihapus, tidak dapat dikembalikan lagi!
+        </span>
+        <br />
+        Tekan "Hapus" untuk menghapus data.
+        </div>
+        <div class="modal-footer">
+        <button
+            class="btn btn-secondary"
+            type="button"
+            data-dismiss="modal"
+        >
+            Batal
+        </button>
+        <form action="/data-barang-admin/hapus-31" method="POST">
+            <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+            <button type="submit" class="btn btn-logout">Hapus</button>
+        </form>
+        </div>
+    </div>
+    </div>
+</div>
+    <div class="modal fade" id="tambahBarangModal" tabindex="-1" aria-labelledby="tambahBarangLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="tambahBarangLabel">Tambah Barang</h5>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/data-barang-admin/tambah">
+          <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+          <div class="form-group ">
+            <label for="nama_barang" class="label-modal">Nama Asset</label>
+            <input type="text" class="form-control" id="nama_barang" name="nama_barang"
+            value="">
+                      </div>
+          <div class="form-group ">
+            <label for="no_barang" class="label-modal">Nomor Asset</label>
+            <input type="text" class="form-control" id="no_barang" name="no_barang"
+            value="">
+                      </div>
+          <div class="form-group ">
+            <label for="tahun_perolehan" class="label-modal">Tahun Perolehan</label>
+            <select
+                name="tahun_perolehan"
+                id="tahun_perolehan"
+                class="form-control"
+                >
+                                <option value="2020" >
+                  2020</option>
+                                <option value="2019" >
+                  2019</option>
+                                <option value="2018" >
+                  2018</option>
+                                <option value="2017" >
+                  2017</option>
+                                <option value="2016" >
+                  2016</option>
+                                <option value="2015" >
+                  2015</option>
+                                <option value="2014" >
+                  2014</option>
+                                <option value="2013" >
+                  2013</option>
+                                <option value="2012" >
+                  2012</option>
+                                <option value="2011" >
+                  2011</option>
+                                <option value="2010" >
+                  2010</option>
+                                <option value="2009" >
+                  2009</option>
+                                <option value="2008" >
+                  2008</option>
+                                <option value="2007" >
+                  2007</option>
+                                <option value="2006" >
+                  2006</option>
+                                <option value="2005" >
+                  2005</option>
+                                <option value="2004" >
+                  2004</option>
+                                <option value="2003" >
+                  2003</option>
+                                <option value="2002" >
+                  2002</option>
+                                <option value="2001" >
+                  2001</option>
+                                <option value="2000" >
+                  2000</option>
+                                <option value="1999" >
+                  1999</option>
+                                <option value="1998" >
+                  1998</option>
+                                <option value="1997" >
+                  1997</option>
+                                <option value="1996" >
+                  1996</option>
+                                <option value="1995" >
+                  1995</option>
+                                <option value="1994" >
+                  1994</option>
+                                <option value="1993" >
+                  1993</option>
+                                <option value="1992" >
+                  1992</option>
+                                <option value="1991" >
+                  1991</option>
+                                <option value="1990" >
+                  1990</option>
+                            </select>
+                      </div>
+          <div class="form-group ">
+                <label for="ruangan_id" class="label-modal">Ruangan</label>
+                <select
+                name="ruangan_id"
+                id="ruangan_id"
+                class="form-control"
+                >
+                                    <option value="8" 
+                    >
+                      Lab Teknik Informatika
+                  </option>
+                                    <option value="9" 
+                    >
+                      Lab Teknik Sipil
+                  </option>
+                                    <option value="10" 
+                    >
+                      Lab Teknik Mesin
+                  </option>
+                                    <option value="11" 
+                    >
+                      Lab Teknik Elektro
+                  </option>
+                                    <option value="12" 
+                    >
+                      Lab Teknik Arsitektur
+                  </option>
+                                    <option value="13" 
+                    >
+                      Lab Sistem Informasi
+                  </option>
+                                  </select>
+                            </div>
+            <div class="form-group ">
+                <label for="kondisi" class="label-modal">Kondisi</label>
+                <select
+                name="kondisi"
+                id="kondisi"
+                class="form-control"
+                >
+                <option value="Baik"
+                >Baik</option>
+                <option value="Buruk" 
+                >Buruk</option>
+                </select>
+                            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-tambah">Tambah</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="modal fade" id="editBarangModal-5" tabindex="-1" aria-labelledby="editBarangLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editBarangLabel">Edit Barang</h5>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/data-barang-admin/edit-5">
+          <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+          <div class="form-group ">
+            <label for="nama_barang" class="label-modal">Nama Asset</label>
+            <input type="text" class="form-control" id="nama_barang" 
+            name="nama_barang" value="Kursi">
+                      </div>
+          <div class="form-group">
+            <label for="no_barang" class="label-modal">Nomor Asset</label>
+            <input type="text" class="form-control" id="no_barang" 
+            name="no_barang" value="1332" disabled>
+          </div>
+          <div class="form-group ">
+            <label for="tahun_perolehan" class="label-modal">Tahun Perolehan</label>
+            <select
+                name="tahun_perolehan"
+                id="tahun_perolehan"
+                class="form-control"
+                >
+                                <option value="2020" >2020</option>
+                                <option value="2019"  selected >2019</option>
+                                <option value="2018" >2018</option>
+                                <option value="2017" >2017</option>
+                                <option value="2016" >2016</option>
+                                <option value="2015" >2015</option>
+                                <option value="2014" >2014</option>
+                                <option value="2013" >2013</option>
+                                <option value="2012" >2012</option>
+                                <option value="2011" >2011</option>
+                                <option value="2010" >2010</option>
+                                <option value="2009" >2009</option>
+                                <option value="2008" >2008</option>
+                                <option value="2007" >2007</option>
+                                <option value="2006" >2006</option>
+                                <option value="2005" >2005</option>
+                                <option value="2004" >2004</option>
+                                <option value="2003" >2003</option>
+                                <option value="2002" >2002</option>
+                                <option value="2001" >2001</option>
+                                <option value="2000" >2000</option>
+                                <option value="1999" >1999</option>
+                                <option value="1998" >1998</option>
+                                <option value="1997" >1997</option>
+                                <option value="1996" >1996</option>
+                                <option value="1995" >1995</option>
+                                <option value="1994" >1994</option>
+                                <option value="1993" >1993</option>
+                                <option value="1992" >1992</option>
+                                <option value="1991" >1991</option>
+                                <option value="1990" >1990</option>
+                            </select>
+                      </div>
+          <div class="form-group ">
+                <label for="ruangan_id" class="label-modal">Ruangan</label>
+                <select
+                name="ruangan_id"
+                id="ruangan_id"
+                class="form-control"
+                >
+                                    <option value="8" >
+                      Lab Teknik Informatika
+                  </option>
+                                    <option value="9" >
+                      Lab Teknik Sipil
+                  </option>
+                                    <option value="10" >
+                      Lab Teknik Mesin
+                  </option>
+                                    <option value="11" >
+                      Lab Teknik Elektro
+                  </option>
+                                    <option value="12"  selected >
+                      Lab Teknik Arsitektur
+                  </option>
+                                    <option value="13" >
+                      Lab Sistem Informasi
+                  </option>
+                                  </select>
+                            </div>
+            <div class="form-group ">
+                <label for="kondisi" class="label-modal">Kondisi</label>
+                <select
+                name="kondisi"
+                id="kondisi"
+                class="form-control"
+                >
+                <option value="Baik" >Baik</option>
+                <option value="Buruk"  selected >Buruk</option>
+                </select>
+                            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-edit">Edit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="editBarangModal-6" tabindex="-1" aria-labelledby="editBarangLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editBarangLabel">Edit Barang</h5>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/data-barang-admin/edit-6">
+          <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+          <div class="form-group ">
+            <label for="nama_barang" class="label-modal">Nama Asset</label>
+            <input type="text" class="form-control" id="nama_barang" 
+            name="nama_barang" value="AC">
+                      </div>
+          <div class="form-group">
+            <label for="no_barang" class="label-modal">Nomor Asset</label>
+            <input type="text" class="form-control" id="no_barang" 
+            name="no_barang" value="1122" disabled>
+          </div>
+          <div class="form-group ">
+            <label for="tahun_perolehan" class="label-modal">Tahun Perolehan</label>
+            <select
+                name="tahun_perolehan"
+                id="tahun_perolehan"
+                class="form-control"
+                >
+                                <option value="2020" >2020</option>
+                                <option value="2019" >2019</option>
+                                <option value="2018" >2018</option>
+                                <option value="2017"  selected >2017</option>
+                                <option value="2016" >2016</option>
+                                <option value="2015" >2015</option>
+                                <option value="2014" >2014</option>
+                                <option value="2013" >2013</option>
+                                <option value="2012" >2012</option>
+                                <option value="2011" >2011</option>
+                                <option value="2010" >2010</option>
+                                <option value="2009" >2009</option>
+                                <option value="2008" >2008</option>
+                                <option value="2007" >2007</option>
+                                <option value="2006" >2006</option>
+                                <option value="2005" >2005</option>
+                                <option value="2004" >2004</option>
+                                <option value="2003" >2003</option>
+                                <option value="2002" >2002</option>
+                                <option value="2001" >2001</option>
+                                <option value="2000" >2000</option>
+                                <option value="1999" >1999</option>
+                                <option value="1998" >1998</option>
+                                <option value="1997" >1997</option>
+                                <option value="1996" >1996</option>
+                                <option value="1995" >1995</option>
+                                <option value="1994" >1994</option>
+                                <option value="1993" >1993</option>
+                                <option value="1992" >1992</option>
+                                <option value="1991" >1991</option>
+                                <option value="1990" >1990</option>
+                            </select>
+                      </div>
+          <div class="form-group ">
+                <label for="ruangan_id" class="label-modal">Ruangan</label>
+                <select
+                name="ruangan_id"
+                id="ruangan_id"
+                class="form-control"
+                >
+                                    <option value="8" >
+                      Lab Teknik Informatika
+                  </option>
+                                    <option value="9"  selected >
+                      Lab Teknik Sipil
+                  </option>
+                                    <option value="10" >
+                      Lab Teknik Mesin
+                  </option>
+                                    <option value="11" >
+                      Lab Teknik Elektro
+                  </option>
+                                    <option value="12" >
+                      Lab Teknik Arsitektur
+                  </option>
+                                    <option value="13" >
+                      Lab Sistem Informasi
+                  </option>
+                                  </select>
+                            </div>
+            <div class="form-group ">
+                <label for="kondisi" class="label-modal">Kondisi</label>
+                <select
+                name="kondisi"
+                id="kondisi"
+                class="form-control"
+                >
+                <option value="Baik"  selected >Baik</option>
+                <option value="Buruk" >Buruk</option>
+                </select>
+                            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-edit">Edit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="editBarangModal-7" tabindex="-1" aria-labelledby="editBarangLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editBarangLabel">Edit Barang</h5>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/data-barang-admin/edit-7">
+          <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+          <div class="form-group ">
+            <label for="nama_barang" class="label-modal">Nama Asset</label>
+            <input type="text" class="form-control" id="nama_barang" 
+            name="nama_barang" value="Sofa">
+                      </div>
+          <div class="form-group">
+            <label for="no_barang" class="label-modal">Nomor Asset</label>
+            <input type="text" class="form-control" id="no_barang" 
+            name="no_barang" value="3311" disabled>
+          </div>
+          <div class="form-group ">
+            <label for="tahun_perolehan" class="label-modal">Tahun Perolehan</label>
+            <select
+                name="tahun_perolehan"
+                id="tahun_perolehan"
+                class="form-control"
+                >
+                                <option value="2020" >2020</option>
+                                <option value="2019" >2019</option>
+                                <option value="2018" >2018</option>
+                                <option value="2017" >2017</option>
+                                <option value="2016" >2016</option>
+                                <option value="2015"  selected >2015</option>
+                                <option value="2014" >2014</option>
+                                <option value="2013" >2013</option>
+                                <option value="2012" >2012</option>
+                                <option value="2011" >2011</option>
+                                <option value="2010" >2010</option>
+                                <option value="2009" >2009</option>
+                                <option value="2008" >2008</option>
+                                <option value="2007" >2007</option>
+                                <option value="2006" >2006</option>
+                                <option value="2005" >2005</option>
+                                <option value="2004" >2004</option>
+                                <option value="2003" >2003</option>
+                                <option value="2002" >2002</option>
+                                <option value="2001" >2001</option>
+                                <option value="2000" >2000</option>
+                                <option value="1999" >1999</option>
+                                <option value="1998" >1998</option>
+                                <option value="1997" >1997</option>
+                                <option value="1996" >1996</option>
+                                <option value="1995" >1995</option>
+                                <option value="1994" >1994</option>
+                                <option value="1993" >1993</option>
+                                <option value="1992" >1992</option>
+                                <option value="1991" >1991</option>
+                                <option value="1990" >1990</option>
+                            </select>
+                      </div>
+          <div class="form-group ">
+                <label for="ruangan_id" class="label-modal">Ruangan</label>
+                <select
+                name="ruangan_id"
+                id="ruangan_id"
+                class="form-control"
+                >
+                                    <option value="8" >
+                      Lab Teknik Informatika
+                  </option>
+                                    <option value="9" >
+                      Lab Teknik Sipil
+                  </option>
+                                    <option value="10"  selected >
+                      Lab Teknik Mesin
+                  </option>
+                                    <option value="11" >
+                      Lab Teknik Elektro
+                  </option>
+                                    <option value="12" >
+                      Lab Teknik Arsitektur
+                  </option>
+                                    <option value="13" >
+                      Lab Sistem Informasi
+                  </option>
+                                  </select>
+                            </div>
+            <div class="form-group ">
+                <label for="kondisi" class="label-modal">Kondisi</label>
+                <select
+                name="kondisi"
+                id="kondisi"
+                class="form-control"
+                >
+                <option value="Baik" >Baik</option>
+                <option value="Buruk"  selected >Buruk</option>
+                </select>
+                            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-edit">Edit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="editBarangModal-8" tabindex="-1" aria-labelledby="editBarangLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editBarangLabel">Edit Barang</h5>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/data-barang-admin/edit-8">
+          <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+          <div class="form-group ">
+            <label for="nama_barang" class="label-modal">Nama Asset</label>
+            <input type="text" class="form-control" id="nama_barang" 
+            name="nama_barang" value="Lemari">
+                      </div>
+          <div class="form-group">
+            <label for="no_barang" class="label-modal">Nomor Asset</label>
+            <input type="text" class="form-control" id="no_barang" 
+            name="no_barang" value="4115" disabled>
+          </div>
+          <div class="form-group ">
+            <label for="tahun_perolehan" class="label-modal">Tahun Perolehan</label>
+            <select
+                name="tahun_perolehan"
+                id="tahun_perolehan"
+                class="form-control"
+                >
+                                <option value="2020" >2020</option>
+                                <option value="2019" >2019</option>
+                                <option value="2018" >2018</option>
+                                <option value="2017" >2017</option>
+                                <option value="2016" >2016</option>
+                                <option value="2015" >2015</option>
+                                <option value="2014"  selected >2014</option>
+                                <option value="2013" >2013</option>
+                                <option value="2012" >2012</option>
+                                <option value="2011" >2011</option>
+                                <option value="2010" >2010</option>
+                                <option value="2009" >2009</option>
+                                <option value="2008" >2008</option>
+                                <option value="2007" >2007</option>
+                                <option value="2006" >2006</option>
+                                <option value="2005" >2005</option>
+                                <option value="2004" >2004</option>
+                                <option value="2003" >2003</option>
+                                <option value="2002" >2002</option>
+                                <option value="2001" >2001</option>
+                                <option value="2000" >2000</option>
+                                <option value="1999" >1999</option>
+                                <option value="1998" >1998</option>
+                                <option value="1997" >1997</option>
+                                <option value="1996" >1996</option>
+                                <option value="1995" >1995</option>
+                                <option value="1994" >1994</option>
+                                <option value="1993" >1993</option>
+                                <option value="1992" >1992</option>
+                                <option value="1991" >1991</option>
+                                <option value="1990" >1990</option>
+                            </select>
+                      </div>
+          <div class="form-group ">
+                <label for="ruangan_id" class="label-modal">Ruangan</label>
+                <select
+                name="ruangan_id"
+                id="ruangan_id"
+                class="form-control"
+                >
+                                    <option value="8" >
+                      Lab Teknik Informatika
+                  </option>
+                                    <option value="9" >
+                      Lab Teknik Sipil
+                  </option>
+                                    <option value="10" >
+                      Lab Teknik Mesin
+                  </option>
+                                    <option value="11" >
+                      Lab Teknik Elektro
+                  </option>
+                                    <option value="12" >
+                      Lab Teknik Arsitektur
+                  </option>
+                                    <option value="13"  selected >
+                      Lab Sistem Informasi
+                  </option>
+                                  </select>
+                            </div>
+            <div class="form-group ">
+                <label for="kondisi" class="label-modal">Kondisi</label>
+                <select
+                name="kondisi"
+                id="kondisi"
+                class="form-control"
+                >
+                <option value="Baik"  selected >Baik</option>
+                <option value="Buruk" >Buruk</option>
+                </select>
+                            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-edit">Edit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="editBarangModal-9" tabindex="-1" aria-labelledby="editBarangLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editBarangLabel">Edit Barang</h5>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/data-barang-admin/edit-9">
+          <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+          <div class="form-group ">
+            <label for="nama_barang" class="label-modal">Nama Asset</label>
+            <input type="text" class="form-control" id="nama_barang" 
+            name="nama_barang" value="Hordeng">
+                      </div>
+          <div class="form-group">
+            <label for="no_barang" class="label-modal">Nomor Asset</label>
+            <input type="text" class="form-control" id="no_barang" 
+            name="no_barang" value="1001" disabled>
+          </div>
+          <div class="form-group ">
+            <label for="tahun_perolehan" class="label-modal">Tahun Perolehan</label>
+            <select
+                name="tahun_perolehan"
+                id="tahun_perolehan"
+                class="form-control"
+                >
+                                <option value="2020" >2020</option>
+                                <option value="2019" >2019</option>
+                                <option value="2018"  selected >2018</option>
+                                <option value="2017" >2017</option>
+                                <option value="2016" >2016</option>
+                                <option value="2015" >2015</option>
+                                <option value="2014" >2014</option>
+                                <option value="2013" >2013</option>
+                                <option value="2012" >2012</option>
+                                <option value="2011" >2011</option>
+                                <option value="2010" >2010</option>
+                                <option value="2009" >2009</option>
+                                <option value="2008" >2008</option>
+                                <option value="2007" >2007</option>
+                                <option value="2006" >2006</option>
+                                <option value="2005" >2005</option>
+                                <option value="2004" >2004</option>
+                                <option value="2003" >2003</option>
+                                <option value="2002" >2002</option>
+                                <option value="2001" >2001</option>
+                                <option value="2000" >2000</option>
+                                <option value="1999" >1999</option>
+                                <option value="1998" >1998</option>
+                                <option value="1997" >1997</option>
+                                <option value="1996" >1996</option>
+                                <option value="1995" >1995</option>
+                                <option value="1994" >1994</option>
+                                <option value="1993" >1993</option>
+                                <option value="1992" >1992</option>
+                                <option value="1991" >1991</option>
+                                <option value="1990" >1990</option>
+                            </select>
+                      </div>
+          <div class="form-group ">
+                <label for="ruangan_id" class="label-modal">Ruangan</label>
+                <select
+                name="ruangan_id"
+                id="ruangan_id"
+                class="form-control"
+                >
+                                    <option value="8" >
+                      Lab Teknik Informatika
+                  </option>
+                                    <option value="9" >
+                      Lab Teknik Sipil
+                  </option>
+                                    <option value="10" >
+                      Lab Teknik Mesin
+                  </option>
+                                    <option value="11"  selected >
+                      Lab Teknik Elektro
+                  </option>
+                                    <option value="12" >
+                      Lab Teknik Arsitektur
+                  </option>
+                                    <option value="13" >
+                      Lab Sistem Informasi
+                  </option>
+                                  </select>
+                            </div>
+            <div class="form-group ">
+                <label for="kondisi" class="label-modal">Kondisi</label>
+                <select
+                name="kondisi"
+                id="kondisi"
+                class="form-control"
+                >
+                <option value="Baik" >Baik</option>
+                <option value="Buruk"  selected >Buruk</option>
+                </select>
+                            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-edit">Edit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="editBarangModal-10" tabindex="-1" aria-labelledby="editBarangLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editBarangLabel">Edit Barang</h5>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/data-barang-admin/edit-10">
+          <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+          <div class="form-group ">
+            <label for="nama_barang" class="label-modal">Nama Asset</label>
+            <input type="text" class="form-control" id="nama_barang" 
+            name="nama_barang" value="Komputer">
+                      </div>
+          <div class="form-group">
+            <label for="no_barang" class="label-modal">Nomor Asset</label>
+            <input type="text" class="form-control" id="no_barang" 
+            name="no_barang" value="1564" disabled>
+          </div>
+          <div class="form-group ">
+            <label for="tahun_perolehan" class="label-modal">Tahun Perolehan</label>
+            <select
+                name="tahun_perolehan"
+                id="tahun_perolehan"
+                class="form-control"
+                >
+                                <option value="2020"  selected >2020</option>
+                                <option value="2019" >2019</option>
+                                <option value="2018" >2018</option>
+                                <option value="2017" >2017</option>
+                                <option value="2016" >2016</option>
+                                <option value="2015" >2015</option>
+                                <option value="2014" >2014</option>
+                                <option value="2013" >2013</option>
+                                <option value="2012" >2012</option>
+                                <option value="2011" >2011</option>
+                                <option value="2010" >2010</option>
+                                <option value="2009" >2009</option>
+                                <option value="2008" >2008</option>
+                                <option value="2007" >2007</option>
+                                <option value="2006" >2006</option>
+                                <option value="2005" >2005</option>
+                                <option value="2004" >2004</option>
+                                <option value="2003" >2003</option>
+                                <option value="2002" >2002</option>
+                                <option value="2001" >2001</option>
+                                <option value="2000" >2000</option>
+                                <option value="1999" >1999</option>
+                                <option value="1998" >1998</option>
+                                <option value="1997" >1997</option>
+                                <option value="1996" >1996</option>
+                                <option value="1995" >1995</option>
+                                <option value="1994" >1994</option>
+                                <option value="1993" >1993</option>
+                                <option value="1992" >1992</option>
+                                <option value="1991" >1991</option>
+                                <option value="1990" >1990</option>
+                            </select>
+                      </div>
+          <div class="form-group ">
+                <label for="ruangan_id" class="label-modal">Ruangan</label>
+                <select
+                name="ruangan_id"
+                id="ruangan_id"
+                class="form-control"
+                >
+                                    <option value="8"  selected >
+                      Lab Teknik Informatika
+                  </option>
+                                    <option value="9" >
+                      Lab Teknik Sipil
+                  </option>
+                                    <option value="10" >
+                      Lab Teknik Mesin
+                  </option>
+                                    <option value="11" >
+                      Lab Teknik Elektro
+                  </option>
+                                    <option value="12" >
+                      Lab Teknik Arsitektur
+                  </option>
+                                    <option value="13" >
+                      Lab Sistem Informasi
+                  </option>
+                                  </select>
+                            </div>
+            <div class="form-group ">
+                <label for="kondisi" class="label-modal">Kondisi</label>
+                <select
+                name="kondisi"
+                id="kondisi"
+                class="form-control"
+                >
+                <option value="Baik"  selected >Baik</option>
+                <option value="Buruk" >Buruk</option>
+                </select>
+                            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-edit">Edit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="editBarangModal-11" tabindex="-1" aria-labelledby="editBarangLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editBarangLabel">Edit Barang</h5>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/data-barang-admin/edit-11">
+          <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+          <div class="form-group ">
+            <label for="nama_barang" class="label-modal">Nama Asset</label>
+            <input type="text" class="form-control" id="nama_barang" 
+            name="nama_barang" value="Mouse">
+                      </div>
+          <div class="form-group">
+            <label for="no_barang" class="label-modal">Nomor Asset</label>
+            <input type="text" class="form-control" id="no_barang" 
+            name="no_barang" value="1980" disabled>
+          </div>
+          <div class="form-group ">
+            <label for="tahun_perolehan" class="label-modal">Tahun Perolehan</label>
+            <select
+                name="tahun_perolehan"
+                id="tahun_perolehan"
+                class="form-control"
+                >
+                                <option value="2020"  selected >2020</option>
+                                <option value="2019" >2019</option>
+                                <option value="2018" >2018</option>
+                                <option value="2017" >2017</option>
+                                <option value="2016" >2016</option>
+                                <option value="2015" >2015</option>
+                                <option value="2014" >2014</option>
+                                <option value="2013" >2013</option>
+                                <option value="2012" >2012</option>
+                                <option value="2011" >2011</option>
+                                <option value="2010" >2010</option>
+                                <option value="2009" >2009</option>
+                                <option value="2008" >2008</option>
+                                <option value="2007" >2007</option>
+                                <option value="2006" >2006</option>
+                                <option value="2005" >2005</option>
+                                <option value="2004" >2004</option>
+                                <option value="2003" >2003</option>
+                                <option value="2002" >2002</option>
+                                <option value="2001" >2001</option>
+                                <option value="2000" >2000</option>
+                                <option value="1999" >1999</option>
+                                <option value="1998" >1998</option>
+                                <option value="1997" >1997</option>
+                                <option value="1996" >1996</option>
+                                <option value="1995" >1995</option>
+                                <option value="1994" >1994</option>
+                                <option value="1993" >1993</option>
+                                <option value="1992" >1992</option>
+                                <option value="1991" >1991</option>
+                                <option value="1990" >1990</option>
+                            </select>
+                      </div>
+          <div class="form-group ">
+                <label for="ruangan_id" class="label-modal">Ruangan</label>
+                <select
+                name="ruangan_id"
+                id="ruangan_id"
+                class="form-control"
+                >
+                                    <option value="8"  selected >
+                      Lab Teknik Informatika
+                  </option>
+                                    <option value="9" >
+                      Lab Teknik Sipil
+                  </option>
+                                    <option value="10" >
+                      Lab Teknik Mesin
+                  </option>
+                                    <option value="11" >
+                      Lab Teknik Elektro
+                  </option>
+                                    <option value="12" >
+                      Lab Teknik Arsitektur
+                  </option>
+                                    <option value="13" >
+                      Lab Sistem Informasi
+                  </option>
+                                  </select>
+                            </div>
+            <div class="form-group ">
+                <label for="kondisi" class="label-modal">Kondisi</label>
+                <select
+                name="kondisi"
+                id="kondisi"
+                class="form-control"
+                >
+                <option value="Baik"  selected >Baik</option>
+                <option value="Buruk" >Buruk</option>
+                </select>
+                            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-edit">Edit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="editBarangModal-12" tabindex="-1" aria-labelledby="editBarangLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editBarangLabel">Edit Barang</h5>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/data-barang-admin/edit-12">
+          <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+          <div class="form-group ">
+            <label for="nama_barang" class="label-modal">Nama Asset</label>
+            <input type="text" class="form-control" id="nama_barang" 
+            name="nama_barang" value="Meja">
+                      </div>
+          <div class="form-group">
+            <label for="no_barang" class="label-modal">Nomor Asset</label>
+            <input type="text" class="form-control" id="no_barang" 
+            name="no_barang" value="1144" disabled>
+          </div>
+          <div class="form-group ">
+            <label for="tahun_perolehan" class="label-modal">Tahun Perolehan</label>
+            <select
+                name="tahun_perolehan"
+                id="tahun_perolehan"
+                class="form-control"
+                >
+                                <option value="2020" >2020</option>
+                                <option value="2019" >2019</option>
+                                <option value="2018" >2018</option>
+                                <option value="2017" >2017</option>
+                                <option value="2016" >2016</option>
+                                <option value="2015"  selected >2015</option>
+                                <option value="2014" >2014</option>
+                                <option value="2013" >2013</option>
+                                <option value="2012" >2012</option>
+                                <option value="2011" >2011</option>
+                                <option value="2010" >2010</option>
+                                <option value="2009" >2009</option>
+                                <option value="2008" >2008</option>
+                                <option value="2007" >2007</option>
+                                <option value="2006" >2006</option>
+                                <option value="2005" >2005</option>
+                                <option value="2004" >2004</option>
+                                <option value="2003" >2003</option>
+                                <option value="2002" >2002</option>
+                                <option value="2001" >2001</option>
+                                <option value="2000" >2000</option>
+                                <option value="1999" >1999</option>
+                                <option value="1998" >1998</option>
+                                <option value="1997" >1997</option>
+                                <option value="1996" >1996</option>
+                                <option value="1995" >1995</option>
+                                <option value="1994" >1994</option>
+                                <option value="1993" >1993</option>
+                                <option value="1992" >1992</option>
+                                <option value="1991" >1991</option>
+                                <option value="1990" >1990</option>
+                            </select>
+                      </div>
+          <div class="form-group ">
+                <label for="ruangan_id" class="label-modal">Ruangan</label>
+                <select
+                name="ruangan_id"
+                id="ruangan_id"
+                class="form-control"
+                >
+                                    <option value="8" >
+                      Lab Teknik Informatika
+                  </option>
+                                    <option value="9" >
+                      Lab Teknik Sipil
+                  </option>
+                                    <option value="10" >
+                      Lab Teknik Mesin
+                  </option>
+                                    <option value="11" >
+                      Lab Teknik Elektro
+                  </option>
+                                    <option value="12" >
+                      Lab Teknik Arsitektur
+                  </option>
+                                    <option value="13"  selected >
+                      Lab Sistem Informasi
+                  </option>
+                                  </select>
+                            </div>
+            <div class="form-group ">
+                <label for="kondisi" class="label-modal">Kondisi</label>
+                <select
+                name="kondisi"
+                id="kondisi"
+                class="form-control"
+                >
+                <option value="Baik" >Baik</option>
+                <option value="Buruk"  selected >Buruk</option>
+                </select>
+                            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-edit">Edit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="editBarangModal-13" tabindex="-1" aria-labelledby="editBarangLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editBarangLabel">Edit Barang</h5>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/data-barang-admin/edit-13">
+          <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+          <div class="form-group ">
+            <label for="nama_barang" class="label-modal">Nama Asset</label>
+            <input type="text" class="form-control" id="nama_barang" 
+            name="nama_barang" value="TV">
+                      </div>
+          <div class="form-group">
+            <label for="no_barang" class="label-modal">Nomor Asset</label>
+            <input type="text" class="form-control" id="no_barang" 
+            name="no_barang" value="4111" disabled>
+          </div>
+          <div class="form-group ">
+            <label for="tahun_perolehan" class="label-modal">Tahun Perolehan</label>
+            <select
+                name="tahun_perolehan"
+                id="tahun_perolehan"
+                class="form-control"
+                >
+                                <option value="2020" >2020</option>
+                                <option value="2019" >2019</option>
+                                <option value="2018"  selected >2018</option>
+                                <option value="2017" >2017</option>
+                                <option value="2016" >2016</option>
+                                <option value="2015" >2015</option>
+                                <option value="2014" >2014</option>
+                                <option value="2013" >2013</option>
+                                <option value="2012" >2012</option>
+                                <option value="2011" >2011</option>
+                                <option value="2010" >2010</option>
+                                <option value="2009" >2009</option>
+                                <option value="2008" >2008</option>
+                                <option value="2007" >2007</option>
+                                <option value="2006" >2006</option>
+                                <option value="2005" >2005</option>
+                                <option value="2004" >2004</option>
+                                <option value="2003" >2003</option>
+                                <option value="2002" >2002</option>
+                                <option value="2001" >2001</option>
+                                <option value="2000" >2000</option>
+                                <option value="1999" >1999</option>
+                                <option value="1998" >1998</option>
+                                <option value="1997" >1997</option>
+                                <option value="1996" >1996</option>
+                                <option value="1995" >1995</option>
+                                <option value="1994" >1994</option>
+                                <option value="1993" >1993</option>
+                                <option value="1992" >1992</option>
+                                <option value="1991" >1991</option>
+                                <option value="1990" >1990</option>
+                            </select>
+                      </div>
+          <div class="form-group ">
+                <label for="ruangan_id" class="label-modal">Ruangan</label>
+                <select
+                name="ruangan_id"
+                id="ruangan_id"
+                class="form-control"
+                >
+                                    <option value="8"  selected >
+                      Lab Teknik Informatika
+                  </option>
+                                    <option value="9" >
+                      Lab Teknik Sipil
+                  </option>
+                                    <option value="10" >
+                      Lab Teknik Mesin
+                  </option>
+                                    <option value="11" >
+                      Lab Teknik Elektro
+                  </option>
+                                    <option value="12" >
+                      Lab Teknik Arsitektur
+                  </option>
+                                    <option value="13" >
+                      Lab Sistem Informasi
+                  </option>
+                                  </select>
+                            </div>
+            <div class="form-group ">
+                <label for="kondisi" class="label-modal">Kondisi</label>
+                <select
+                name="kondisi"
+                id="kondisi"
+                class="form-control"
+                >
+                <option value="Baik"  selected >Baik</option>
+                <option value="Buruk" >Buruk</option>
+                </select>
+                            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-edit">Edit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="editBarangModal-14" tabindex="-1" aria-labelledby="editBarangLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editBarangLabel">Edit Barang</h5>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/data-barang-admin/edit-14">
+          <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+          <div class="form-group ">
+            <label for="nama_barang" class="label-modal">Nama Asset</label>
+            <input type="text" class="form-control" id="nama_barang" 
+            name="nama_barang" value="Speaker">
+                      </div>
+          <div class="form-group">
+            <label for="no_barang" class="label-modal">Nomor Asset</label>
+            <input type="text" class="form-control" id="no_barang" 
+            name="no_barang" value="5513" disabled>
+          </div>
+          <div class="form-group ">
+            <label for="tahun_perolehan" class="label-modal">Tahun Perolehan</label>
+            <select
+                name="tahun_perolehan"
+                id="tahun_perolehan"
+                class="form-control"
+                >
+                                <option value="2020" >2020</option>
+                                <option value="2019" >2019</option>
+                                <option value="2018" >2018</option>
+                                <option value="2017"  selected >2017</option>
+                                <option value="2016" >2016</option>
+                                <option value="2015" >2015</option>
+                                <option value="2014" >2014</option>
+                                <option value="2013" >2013</option>
+                                <option value="2012" >2012</option>
+                                <option value="2011" >2011</option>
+                                <option value="2010" >2010</option>
+                                <option value="2009" >2009</option>
+                                <option value="2008" >2008</option>
+                                <option value="2007" >2007</option>
+                                <option value="2006" >2006</option>
+                                <option value="2005" >2005</option>
+                                <option value="2004" >2004</option>
+                                <option value="2003" >2003</option>
+                                <option value="2002" >2002</option>
+                                <option value="2001" >2001</option>
+                                <option value="2000" >2000</option>
+                                <option value="1999" >1999</option>
+                                <option value="1998" >1998</option>
+                                <option value="1997" >1997</option>
+                                <option value="1996" >1996</option>
+                                <option value="1995" >1995</option>
+                                <option value="1994" >1994</option>
+                                <option value="1993" >1993</option>
+                                <option value="1992" >1992</option>
+                                <option value="1991" >1991</option>
+                                <option value="1990" >1990</option>
+                            </select>
+                      </div>
+          <div class="form-group ">
+                <label for="ruangan_id" class="label-modal">Ruangan</label>
+                <select
+                name="ruangan_id"
+                id="ruangan_id"
+                class="form-control"
+                >
+                                    <option value="8"  selected >
+                      Lab Teknik Informatika
+                  </option>
+                                    <option value="9" >
+                      Lab Teknik Sipil
+                  </option>
+                                    <option value="10" >
+                      Lab Teknik Mesin
+                  </option>
+                                    <option value="11" >
+                      Lab Teknik Elektro
+                  </option>
+                                    <option value="12" >
+                      Lab Teknik Arsitektur
+                  </option>
+                                    <option value="13" >
+                      Lab Sistem Informasi
+                  </option>
+                                  </select>
+                            </div>
+            <div class="form-group ">
+                <label for="kondisi" class="label-modal">Kondisi</label>
+                <select
+                name="kondisi"
+                id="kondisi"
+                class="form-control"
+                >
+                <option value="Baik" >Baik</option>
+                <option value="Buruk"  selected >Buruk</option>
+                </select>
+                            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-edit">Edit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="editBarangModal-15" tabindex="-1" aria-labelledby="editBarangLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editBarangLabel">Edit Barang</h5>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/data-barang-admin/edit-15">
+          <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+          <div class="form-group ">
+            <label for="nama_barang" class="label-modal">Nama Asset</label>
+            <input type="text" class="form-control" id="nama_barang" 
+            name="nama_barang" value="Rak Buku">
+                      </div>
+          <div class="form-group">
+            <label for="no_barang" class="label-modal">Nomor Asset</label>
+            <input type="text" class="form-control" id="no_barang" 
+            name="no_barang" value="9614" disabled>
+          </div>
+          <div class="form-group ">
+            <label for="tahun_perolehan" class="label-modal">Tahun Perolehan</label>
+            <select
+                name="tahun_perolehan"
+                id="tahun_perolehan"
+                class="form-control"
+                >
+                                <option value="2020" >2020</option>
+                                <option value="2019" >2019</option>
+                                <option value="2018" >2018</option>
+                                <option value="2017" >2017</option>
+                                <option value="2016"  selected >2016</option>
+                                <option value="2015" >2015</option>
+                                <option value="2014" >2014</option>
+                                <option value="2013" >2013</option>
+                                <option value="2012" >2012</option>
+                                <option value="2011" >2011</option>
+                                <option value="2010" >2010</option>
+                                <option value="2009" >2009</option>
+                                <option value="2008" >2008</option>
+                                <option value="2007" >2007</option>
+                                <option value="2006" >2006</option>
+                                <option value="2005" >2005</option>
+                                <option value="2004" >2004</option>
+                                <option value="2003" >2003</option>
+                                <option value="2002" >2002</option>
+                                <option value="2001" >2001</option>
+                                <option value="2000" >2000</option>
+                                <option value="1999" >1999</option>
+                                <option value="1998" >1998</option>
+                                <option value="1997" >1997</option>
+                                <option value="1996" >1996</option>
+                                <option value="1995" >1995</option>
+                                <option value="1994" >1994</option>
+                                <option value="1993" >1993</option>
+                                <option value="1992" >1992</option>
+                                <option value="1991" >1991</option>
+                                <option value="1990" >1990</option>
+                            </select>
+                      </div>
+          <div class="form-group ">
+                <label for="ruangan_id" class="label-modal">Ruangan</label>
+                <select
+                name="ruangan_id"
+                id="ruangan_id"
+                class="form-control"
+                >
+                                    <option value="8" >
+                      Lab Teknik Informatika
+                  </option>
+                                    <option value="9" >
+                      Lab Teknik Sipil
+                  </option>
+                                    <option value="10" >
+                      Lab Teknik Mesin
+                  </option>
+                                    <option value="11" >
+                      Lab Teknik Elektro
+                  </option>
+                                    <option value="12"  selected >
+                      Lab Teknik Arsitektur
+                  </option>
+                                    <option value="13" >
+                      Lab Sistem Informasi
+                  </option>
+                                  </select>
+                            </div>
+            <div class="form-group ">
+                <label for="kondisi" class="label-modal">Kondisi</label>
+                <select
+                name="kondisi"
+                id="kondisi"
+                class="form-control"
+                >
+                <option value="Baik" >Baik</option>
+                <option value="Buruk"  selected >Buruk</option>
+                </select>
+                            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-edit">Edit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="editBarangModal-16" tabindex="-1" aria-labelledby="editBarangLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editBarangLabel">Edit Barang</h5>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/data-barang-admin/edit-16">
+          <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+          <div class="form-group ">
+            <label for="nama_barang" class="label-modal">Nama Asset</label>
+            <input type="text" class="form-control" id="nama_barang" 
+            name="nama_barang" value="Monitor">
+                      </div>
+          <div class="form-group">
+            <label for="no_barang" class="label-modal">Nomor Asset</label>
+            <input type="text" class="form-control" id="no_barang" 
+            name="no_barang" value="1339" disabled>
+          </div>
+          <div class="form-group ">
+            <label for="tahun_perolehan" class="label-modal">Tahun Perolehan</label>
+            <select
+                name="tahun_perolehan"
+                id="tahun_perolehan"
+                class="form-control"
+                >
+                                <option value="2020"  selected >2020</option>
+                                <option value="2019" >2019</option>
+                                <option value="2018" >2018</option>
+                                <option value="2017" >2017</option>
+                                <option value="2016" >2016</option>
+                                <option value="2015" >2015</option>
+                                <option value="2014" >2014</option>
+                                <option value="2013" >2013</option>
+                                <option value="2012" >2012</option>
+                                <option value="2011" >2011</option>
+                                <option value="2010" >2010</option>
+                                <option value="2009" >2009</option>
+                                <option value="2008" >2008</option>
+                                <option value="2007" >2007</option>
+                                <option value="2006" >2006</option>
+                                <option value="2005" >2005</option>
+                                <option value="2004" >2004</option>
+                                <option value="2003" >2003</option>
+                                <option value="2002" >2002</option>
+                                <option value="2001" >2001</option>
+                                <option value="2000" >2000</option>
+                                <option value="1999" >1999</option>
+                                <option value="1998" >1998</option>
+                                <option value="1997" >1997</option>
+                                <option value="1996" >1996</option>
+                                <option value="1995" >1995</option>
+                                <option value="1994" >1994</option>
+                                <option value="1993" >1993</option>
+                                <option value="1992" >1992</option>
+                                <option value="1991" >1991</option>
+                                <option value="1990" >1990</option>
+                            </select>
+                      </div>
+          <div class="form-group ">
+                <label for="ruangan_id" class="label-modal">Ruangan</label>
+                <select
+                name="ruangan_id"
+                id="ruangan_id"
+                class="form-control"
+                >
+                                    <option value="8"  selected >
+                      Lab Teknik Informatika
+                  </option>
+                                    <option value="9" >
+                      Lab Teknik Sipil
+                  </option>
+                                    <option value="10" >
+                      Lab Teknik Mesin
+                  </option>
+                                    <option value="11" >
+                      Lab Teknik Elektro
+                  </option>
+                                    <option value="12" >
+                      Lab Teknik Arsitektur
+                  </option>
+                                    <option value="13" >
+                      Lab Sistem Informasi
+                  </option>
+                                  </select>
+                            </div>
+            <div class="form-group ">
+                <label for="kondisi" class="label-modal">Kondisi</label>
+                <select
+                name="kondisi"
+                id="kondisi"
+                class="form-control"
+                >
+                <option value="Baik"  selected >Baik</option>
+                <option value="Buruk" >Buruk</option>
+                </select>
+                            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-edit">Edit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="editBarangModal-17" tabindex="-1" aria-labelledby="editBarangLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editBarangLabel">Edit Barang</h5>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/data-barang-admin/edit-17">
+          <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+          <div class="form-group ">
+            <label for="nama_barang" class="label-modal">Nama Asset</label>
+            <input type="text" class="form-control" id="nama_barang" 
+            name="nama_barang" value="Pot Bunga">
+                      </div>
+          <div class="form-group">
+            <label for="no_barang" class="label-modal">Nomor Asset</label>
+            <input type="text" class="form-control" id="no_barang" 
+            name="no_barang" value="7781" disabled>
+          </div>
+          <div class="form-group ">
+            <label for="tahun_perolehan" class="label-modal">Tahun Perolehan</label>
+            <select
+                name="tahun_perolehan"
+                id="tahun_perolehan"
+                class="form-control"
+                >
+                                <option value="2020" >2020</option>
+                                <option value="2019" >2019</option>
+                                <option value="2018" >2018</option>
+                                <option value="2017" >2017</option>
+                                <option value="2016" >2016</option>
+                                <option value="2015" >2015</option>
+                                <option value="2014" >2014</option>
+                                <option value="2013" >2013</option>
+                                <option value="2012"  selected >2012</option>
+                                <option value="2011" >2011</option>
+                                <option value="2010" >2010</option>
+                                <option value="2009" >2009</option>
+                                <option value="2008" >2008</option>
+                                <option value="2007" >2007</option>
+                                <option value="2006" >2006</option>
+                                <option value="2005" >2005</option>
+                                <option value="2004" >2004</option>
+                                <option value="2003" >2003</option>
+                                <option value="2002" >2002</option>
+                                <option value="2001" >2001</option>
+                                <option value="2000" >2000</option>
+                                <option value="1999" >1999</option>
+                                <option value="1998" >1998</option>
+                                <option value="1997" >1997</option>
+                                <option value="1996" >1996</option>
+                                <option value="1995" >1995</option>
+                                <option value="1994" >1994</option>
+                                <option value="1993" >1993</option>
+                                <option value="1992" >1992</option>
+                                <option value="1991" >1991</option>
+                                <option value="1990" >1990</option>
+                            </select>
+                      </div>
+          <div class="form-group ">
+                <label for="ruangan_id" class="label-modal">Ruangan</label>
+                <select
+                name="ruangan_id"
+                id="ruangan_id"
+                class="form-control"
+                >
+                                    <option value="8" >
+                      Lab Teknik Informatika
+                  </option>
+                                    <option value="9"  selected >
+                      Lab Teknik Sipil
+                  </option>
+                                    <option value="10" >
+                      Lab Teknik Mesin
+                  </option>
+                                    <option value="11" >
+                      Lab Teknik Elektro
+                  </option>
+                                    <option value="12" >
+                      Lab Teknik Arsitektur
+                  </option>
+                                    <option value="13" >
+                      Lab Sistem Informasi
+                  </option>
+                                  </select>
+                            </div>
+            <div class="form-group ">
+                <label for="kondisi" class="label-modal">Kondisi</label>
+                <select
+                name="kondisi"
+                id="kondisi"
+                class="form-control"
+                >
+                <option value="Baik"  selected >Baik</option>
+                <option value="Buruk" >Buruk</option>
+                </select>
+                            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-edit">Edit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="editBarangModal-26" tabindex="-1" aria-labelledby="editBarangLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editBarangLabel">Edit Barang</h5>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/data-barang-admin/edit-26">
+          <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+          <div class="form-group ">
+            <label for="nama_barang" class="label-modal">Nama Asset</label>
+            <input type="text" class="form-control" id="nama_barang" 
+            name="nama_barang" value="Kipas Angin">
+                      </div>
+          <div class="form-group">
+            <label for="no_barang" class="label-modal">Nomor Asset</label>
+            <input type="text" class="form-control" id="no_barang" 
+            name="no_barang" value="7813" disabled>
+          </div>
+          <div class="form-group ">
+            <label for="tahun_perolehan" class="label-modal">Tahun Perolehan</label>
+            <select
+                name="tahun_perolehan"
+                id="tahun_perolehan"
+                class="form-control"
+                >
+                                <option value="2020" >2020</option>
+                                <option value="2019"  selected >2019</option>
+                                <option value="2018" >2018</option>
+                                <option value="2017" >2017</option>
+                                <option value="2016" >2016</option>
+                                <option value="2015" >2015</option>
+                                <option value="2014" >2014</option>
+                                <option value="2013" >2013</option>
+                                <option value="2012" >2012</option>
+                                <option value="2011" >2011</option>
+                                <option value="2010" >2010</option>
+                                <option value="2009" >2009</option>
+                                <option value="2008" >2008</option>
+                                <option value="2007" >2007</option>
+                                <option value="2006" >2006</option>
+                                <option value="2005" >2005</option>
+                                <option value="2004" >2004</option>
+                                <option value="2003" >2003</option>
+                                <option value="2002" >2002</option>
+                                <option value="2001" >2001</option>
+                                <option value="2000" >2000</option>
+                                <option value="1999" >1999</option>
+                                <option value="1998" >1998</option>
+                                <option value="1997" >1997</option>
+                                <option value="1996" >1996</option>
+                                <option value="1995" >1995</option>
+                                <option value="1994" >1994</option>
+                                <option value="1993" >1993</option>
+                                <option value="1992" >1992</option>
+                                <option value="1991" >1991</option>
+                                <option value="1990" >1990</option>
+                            </select>
+                      </div>
+          <div class="form-group ">
+                <label for="ruangan_id" class="label-modal">Ruangan</label>
+                <select
+                name="ruangan_id"
+                id="ruangan_id"
+                class="form-control"
+                >
+                                    <option value="8" >
+                      Lab Teknik Informatika
+                  </option>
+                                    <option value="9" >
+                      Lab Teknik Sipil
+                  </option>
+                                    <option value="10" >
+                      Lab Teknik Mesin
+                  </option>
+                                    <option value="11" >
+                      Lab Teknik Elektro
+                  </option>
+                                    <option value="12"  selected >
+                      Lab Teknik Arsitektur
+                  </option>
+                                    <option value="13" >
+                      Lab Sistem Informasi
+                  </option>
+                                  </select>
+                            </div>
+            <div class="form-group ">
+                <label for="kondisi" class="label-modal">Kondisi</label>
+                <select
+                name="kondisi"
+                id="kondisi"
+                class="form-control"
+                >
+                <option value="Baik" >Baik</option>
+                <option value="Buruk"  selected >Buruk</option>
+                </select>
+                            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-edit">Edit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="editBarangModal-27" tabindex="-1" aria-labelledby="editBarangLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editBarangLabel">Edit Barang</h5>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/data-barang-admin/edit-27">
+          <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+          <div class="form-group ">
+            <label for="nama_barang" class="label-modal">Nama Asset</label>
+            <input type="text" class="form-control" id="nama_barang" 
+            name="nama_barang" value="Sapu">
+                      </div>
+          <div class="form-group">
+            <label for="no_barang" class="label-modal">Nomor Asset</label>
+            <input type="text" class="form-control" id="no_barang" 
+            name="no_barang" value="6890" disabled>
+          </div>
+          <div class="form-group ">
+            <label for="tahun_perolehan" class="label-modal">Tahun Perolehan</label>
+            <select
+                name="tahun_perolehan"
+                id="tahun_perolehan"
+                class="form-control"
+                >
+                                <option value="2020" >2020</option>
+                                <option value="2019" >2019</option>
+                                <option value="2018" >2018</option>
+                                <option value="2017"  selected >2017</option>
+                                <option value="2016" >2016</option>
+                                <option value="2015" >2015</option>
+                                <option value="2014" >2014</option>
+                                <option value="2013" >2013</option>
+                                <option value="2012" >2012</option>
+                                <option value="2011" >2011</option>
+                                <option value="2010" >2010</option>
+                                <option value="2009" >2009</option>
+                                <option value="2008" >2008</option>
+                                <option value="2007" >2007</option>
+                                <option value="2006" >2006</option>
+                                <option value="2005" >2005</option>
+                                <option value="2004" >2004</option>
+                                <option value="2003" >2003</option>
+                                <option value="2002" >2002</option>
+                                <option value="2001" >2001</option>
+                                <option value="2000" >2000</option>
+                                <option value="1999" >1999</option>
+                                <option value="1998" >1998</option>
+                                <option value="1997" >1997</option>
+                                <option value="1996" >1996</option>
+                                <option value="1995" >1995</option>
+                                <option value="1994" >1994</option>
+                                <option value="1993" >1993</option>
+                                <option value="1992" >1992</option>
+                                <option value="1991" >1991</option>
+                                <option value="1990" >1990</option>
+                            </select>
+                      </div>
+          <div class="form-group ">
+                <label for="ruangan_id" class="label-modal">Ruangan</label>
+                <select
+                name="ruangan_id"
+                id="ruangan_id"
+                class="form-control"
+                >
+                                    <option value="8"  selected >
+                      Lab Teknik Informatika
+                  </option>
+                                    <option value="9" >
+                      Lab Teknik Sipil
+                  </option>
+                                    <option value="10" >
+                      Lab Teknik Mesin
+                  </option>
+                                    <option value="11" >
+                      Lab Teknik Elektro
+                  </option>
+                                    <option value="12" >
+                      Lab Teknik Arsitektur
+                  </option>
+                                    <option value="13" >
+                      Lab Sistem Informasi
+                  </option>
+                                  </select>
+                            </div>
+            <div class="form-group ">
+                <label for="kondisi" class="label-modal">Kondisi</label>
+                <select
+                name="kondisi"
+                id="kondisi"
+                class="form-control"
+                >
+                <option value="Baik"  selected >Baik</option>
+                <option value="Buruk" >Buruk</option>
+                </select>
+                            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-edit">Edit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="editBarangModal-28" tabindex="-1" aria-labelledby="editBarangLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editBarangLabel">Edit Barang</h5>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/data-barang-admin/edit-28">
+          <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+          <div class="form-group ">
+            <label for="nama_barang" class="label-modal">Nama Asset</label>
+            <input type="text" class="form-control" id="nama_barang" 
+            name="nama_barang" value="Stavolt">
+                      </div>
+          <div class="form-group">
+            <label for="no_barang" class="label-modal">Nomor Asset</label>
+            <input type="text" class="form-control" id="no_barang" 
+            name="no_barang" value="4820" disabled>
+          </div>
+          <div class="form-group ">
+            <label for="tahun_perolehan" class="label-modal">Tahun Perolehan</label>
+            <select
+                name="tahun_perolehan"
+                id="tahun_perolehan"
+                class="form-control"
+                >
+                                <option value="2020" >2020</option>
+                                <option value="2019" >2019</option>
+                                <option value="2018" >2018</option>
+                                <option value="2017" >2017</option>
+                                <option value="2016" >2016</option>
+                                <option value="2015"  selected >2015</option>
+                                <option value="2014" >2014</option>
+                                <option value="2013" >2013</option>
+                                <option value="2012" >2012</option>
+                                <option value="2011" >2011</option>
+                                <option value="2010" >2010</option>
+                                <option value="2009" >2009</option>
+                                <option value="2008" >2008</option>
+                                <option value="2007" >2007</option>
+                                <option value="2006" >2006</option>
+                                <option value="2005" >2005</option>
+                                <option value="2004" >2004</option>
+                                <option value="2003" >2003</option>
+                                <option value="2002" >2002</option>
+                                <option value="2001" >2001</option>
+                                <option value="2000" >2000</option>
+                                <option value="1999" >1999</option>
+                                <option value="1998" >1998</option>
+                                <option value="1997" >1997</option>
+                                <option value="1996" >1996</option>
+                                <option value="1995" >1995</option>
+                                <option value="1994" >1994</option>
+                                <option value="1993" >1993</option>
+                                <option value="1992" >1992</option>
+                                <option value="1991" >1991</option>
+                                <option value="1990" >1990</option>
+                            </select>
+                      </div>
+          <div class="form-group ">
+                <label for="ruangan_id" class="label-modal">Ruangan</label>
+                <select
+                name="ruangan_id"
+                id="ruangan_id"
+                class="form-control"
+                >
+                                    <option value="8" >
+                      Lab Teknik Informatika
+                  </option>
+                                    <option value="9" >
+                      Lab Teknik Sipil
+                  </option>
+                                    <option value="10"  selected >
+                      Lab Teknik Mesin
+                  </option>
+                                    <option value="11" >
+                      Lab Teknik Elektro
+                  </option>
+                                    <option value="12" >
+                      Lab Teknik Arsitektur
+                  </option>
+                                    <option value="13" >
+                      Lab Sistem Informasi
+                  </option>
+                                  </select>
+                            </div>
+            <div class="form-group ">
+                <label for="kondisi" class="label-modal">Kondisi</label>
+                <select
+                name="kondisi"
+                id="kondisi"
+                class="form-control"
+                >
+                <option value="Baik"  selected >Baik</option>
+                <option value="Buruk" >Buruk</option>
+                </select>
+                            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-edit">Edit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="editBarangModal-29" tabindex="-1" aria-labelledby="editBarangLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editBarangLabel">Edit Barang</h5>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/data-barang-admin/edit-29">
+          <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+          <div class="form-group ">
+            <label for="nama_barang" class="label-modal">Nama Asset</label>
+            <input type="text" class="form-control" id="nama_barang" 
+            name="nama_barang" value="Kulkas">
+                      </div>
+          <div class="form-group">
+            <label for="no_barang" class="label-modal">Nomor Asset</label>
+            <input type="text" class="form-control" id="no_barang" 
+            name="no_barang" value="4056" disabled>
+          </div>
+          <div class="form-group ">
+            <label for="tahun_perolehan" class="label-modal">Tahun Perolehan</label>
+            <select
+                name="tahun_perolehan"
+                id="tahun_perolehan"
+                class="form-control"
+                >
+                                <option value="2020" >2020</option>
+                                <option value="2019"  selected >2019</option>
+                                <option value="2018" >2018</option>
+                                <option value="2017" >2017</option>
+                                <option value="2016" >2016</option>
+                                <option value="2015" >2015</option>
+                                <option value="2014" >2014</option>
+                                <option value="2013" >2013</option>
+                                <option value="2012" >2012</option>
+                                <option value="2011" >2011</option>
+                                <option value="2010" >2010</option>
+                                <option value="2009" >2009</option>
+                                <option value="2008" >2008</option>
+                                <option value="2007" >2007</option>
+                                <option value="2006" >2006</option>
+                                <option value="2005" >2005</option>
+                                <option value="2004" >2004</option>
+                                <option value="2003" >2003</option>
+                                <option value="2002" >2002</option>
+                                <option value="2001" >2001</option>
+                                <option value="2000" >2000</option>
+                                <option value="1999" >1999</option>
+                                <option value="1998" >1998</option>
+                                <option value="1997" >1997</option>
+                                <option value="1996" >1996</option>
+                                <option value="1995" >1995</option>
+                                <option value="1994" >1994</option>
+                                <option value="1993" >1993</option>
+                                <option value="1992" >1992</option>
+                                <option value="1991" >1991</option>
+                                <option value="1990" >1990</option>
+                            </select>
+                      </div>
+          <div class="form-group ">
+                <label for="ruangan_id" class="label-modal">Ruangan</label>
+                <select
+                name="ruangan_id"
+                id="ruangan_id"
+                class="form-control"
+                >
+                                    <option value="8" >
+                      Lab Teknik Informatika
+                  </option>
+                                    <option value="9" >
+                      Lab Teknik Sipil
+                  </option>
+                                    <option value="10" >
+                      Lab Teknik Mesin
+                  </option>
+                                    <option value="11" >
+                      Lab Teknik Elektro
+                  </option>
+                                    <option value="12"  selected >
+                      Lab Teknik Arsitektur
+                  </option>
+                                    <option value="13" >
+                      Lab Sistem Informasi
+                  </option>
+                                  </select>
+                            </div>
+            <div class="form-group ">
+                <label for="kondisi" class="label-modal">Kondisi</label>
+                <select
+                name="kondisi"
+                id="kondisi"
+                class="form-control"
+                >
+                <option value="Baik" >Baik</option>
+                <option value="Buruk"  selected >Buruk</option>
+                </select>
+                            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-edit">Edit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="editBarangModal-30" tabindex="-1" aria-labelledby="editBarangLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editBarangLabel">Edit Barang</h5>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/data-barang-admin/edit-30">
+          <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+          <div class="form-group ">
+            <label for="nama_barang" class="label-modal">Nama Asset</label>
+            <input type="text" class="form-control" id="nama_barang" 
+            name="nama_barang" value="Jam Dinding">
+                      </div>
+          <div class="form-group">
+            <label for="no_barang" class="label-modal">Nomor Asset</label>
+            <input type="text" class="form-control" id="no_barang" 
+            name="no_barang" value="8401" disabled>
+          </div>
+          <div class="form-group ">
+            <label for="tahun_perolehan" class="label-modal">Tahun Perolehan</label>
+            <select
+                name="tahun_perolehan"
+                id="tahun_perolehan"
+                class="form-control"
+                >
+                                <option value="2020" >2020</option>
+                                <option value="2019" >2019</option>
+                                <option value="2018" >2018</option>
+                                <option value="2017"  selected >2017</option>
+                                <option value="2016" >2016</option>
+                                <option value="2015" >2015</option>
+                                <option value="2014" >2014</option>
+                                <option value="2013" >2013</option>
+                                <option value="2012" >2012</option>
+                                <option value="2011" >2011</option>
+                                <option value="2010" >2010</option>
+                                <option value="2009" >2009</option>
+                                <option value="2008" >2008</option>
+                                <option value="2007" >2007</option>
+                                <option value="2006" >2006</option>
+                                <option value="2005" >2005</option>
+                                <option value="2004" >2004</option>
+                                <option value="2003" >2003</option>
+                                <option value="2002" >2002</option>
+                                <option value="2001" >2001</option>
+                                <option value="2000" >2000</option>
+                                <option value="1999" >1999</option>
+                                <option value="1998" >1998</option>
+                                <option value="1997" >1997</option>
+                                <option value="1996" >1996</option>
+                                <option value="1995" >1995</option>
+                                <option value="1994" >1994</option>
+                                <option value="1993" >1993</option>
+                                <option value="1992" >1992</option>
+                                <option value="1991" >1991</option>
+                                <option value="1990" >1990</option>
+                            </select>
+                      </div>
+          <div class="form-group ">
+                <label for="ruangan_id" class="label-modal">Ruangan</label>
+                <select
+                name="ruangan_id"
+                id="ruangan_id"
+                class="form-control"
+                >
+                                    <option value="8"  selected >
+                      Lab Teknik Informatika
+                  </option>
+                                    <option value="9" >
+                      Lab Teknik Sipil
+                  </option>
+                                    <option value="10" >
+                      Lab Teknik Mesin
+                  </option>
+                                    <option value="11" >
+                      Lab Teknik Elektro
+                  </option>
+                                    <option value="12" >
+                      Lab Teknik Arsitektur
+                  </option>
+                                    <option value="13" >
+                      Lab Sistem Informasi
+                  </option>
+                                  </select>
+                            </div>
+            <div class="form-group ">
+                <label for="kondisi" class="label-modal">Kondisi</label>
+                <select
+                name="kondisi"
+                id="kondisi"
+                class="form-control"
+                >
+                <option value="Baik"  selected >Baik</option>
+                <option value="Buruk" >Buruk</option>
+                </select>
+                            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-edit">Edit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="editBarangModal-31" tabindex="-1" aria-labelledby="editBarangLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editBarangLabel">Edit Barang</h5>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/data-barang-admin/edit-31">
+          <input type="hidden" name="_token" value="ElKPvPrkjNkWEH5YzmqTg5EuwglUOvnaRY6zvkg5">
+          <div class="form-group ">
+            <label for="nama_barang" class="label-modal">Nama Asset</label>
+            <input type="text" class="form-control" id="nama_barang" 
+            name="nama_barang" value="Kompor">
+                      </div>
+          <div class="form-group">
+            <label for="no_barang" class="label-modal">Nomor Asset</label>
+            <input type="text" class="form-control" id="no_barang" 
+            name="no_barang" value="1084" disabled>
+          </div>
+          <div class="form-group ">
+            <label for="tahun_perolehan" class="label-modal">Tahun Perolehan</label>
+            <select
+                name="tahun_perolehan"
+                id="tahun_perolehan"
+                class="form-control"
+                >
+                                <option value="2020" >2020</option>
+                                <option value="2019" >2019</option>
+                                <option value="2018" >2018</option>
+                                <option value="2017" >2017</option>
+                                <option value="2016" >2016</option>
+                                <option value="2015"  selected >2015</option>
+                                <option value="2014" >2014</option>
+                                <option value="2013" >2013</option>
+                                <option value="2012" >2012</option>
+                                <option value="2011" >2011</option>
+                                <option value="2010" >2010</option>
+                                <option value="2009" >2009</option>
+                                <option value="2008" >2008</option>
+                                <option value="2007" >2007</option>
+                                <option value="2006" >2006</option>
+                                <option value="2005" >2005</option>
+                                <option value="2004" >2004</option>
+                                <option value="2003" >2003</option>
+                                <option value="2002" >2002</option>
+                                <option value="2001" >2001</option>
+                                <option value="2000" >2000</option>
+                                <option value="1999" >1999</option>
+                                <option value="1998" >1998</option>
+                                <option value="1997" >1997</option>
+                                <option value="1996" >1996</option>
+                                <option value="1995" >1995</option>
+                                <option value="1994" >1994</option>
+                                <option value="1993" >1993</option>
+                                <option value="1992" >1992</option>
+                                <option value="1991" >1991</option>
+                                <option value="1990" >1990</option>
+                            </select>
+                      </div>
+          <div class="form-group ">
+                <label for="ruangan_id" class="label-modal">Ruangan</label>
+                <select
+                name="ruangan_id"
+                id="ruangan_id"
+                class="form-control"
+                >
+                                    <option value="8" >
+                      Lab Teknik Informatika
+                  </option>
+                                    <option value="9" >
+                      Lab Teknik Sipil
+                  </option>
+                                    <option value="10"  selected >
+                      Lab Teknik Mesin
+                  </option>
+                                    <option value="11" >
+                      Lab Teknik Elektro
+                  </option>
+                                    <option value="12" >
+                      Lab Teknik Arsitektur
+                  </option>
+                                    <option value="13" >
+                      Lab Sistem Informasi
+                  </option>
+                                  </select>
+                            </div>
+            <div class="form-group ">
+                <label for="kondisi" class="label-modal">Kondisi</label>
+                <select
+                name="kondisi"
+                id="kondisi"
+                class="form-control"
+                >
+                <option value="Baik"  selected >Baik</option>
+                <option value="Buruk" >Buruk</option>
+                </select>
+                            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" class="btn btn-edit">Edit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+        <!-- Bootstrap core JavaScript-->
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="/js/main.min.js"></script>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+        
+    <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="/js/demo/datatables-demo.js"></script>
+
+    
+    <script src="/vendor/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/vendor/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="/vendor/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="/vendor/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="/vendor/jszip/jszip.min.js"></script>
+    <script src="/vendor/pdfmake/pdfmake.min.js"></script>
+    <script src="/vendor/pdfmake/vfs_fonts.js"></script>
+    <script src="/vendor/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="/vendor/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="/vendor/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+    <script type="text/javascript"> 
+        $(document).ready(function () {
+            $("#dataTableBarang").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["excel", "pdf", "print"]
+            }).buttons().container().appendTo('#dataTableBarang_wrapper .col-md-6:eq(0)');
+        });
+    </script>
+
+    
+    
+
+  </body>
+</html>

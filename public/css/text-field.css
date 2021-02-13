@@ -1,0 +1,13 @@
+.form-control {
+    background: #ffffff;
+    border-radius: 8px;
+    color: #313e89;
+}
+
+.label-modal {
+    color: #313e89;
+}
+
+.has-error {
+    color: #e74a3b;
+}

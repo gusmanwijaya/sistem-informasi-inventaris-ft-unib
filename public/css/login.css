@@ -1,0 +1,46 @@
+.page-login {
+    margin-top: 100px;
+}
+
+.row-login {
+    min-height: 70vh;
+}
+
+.section-login h2 {
+    font-size: 28px;
+    color: #ffffff;
+    font-weight: 300;
+    margin-top: 0;
+}
+
+.label-form {
+    color: #ffffff;
+}
+
+@media only screen and (max-width: 425px) {
+    .page-login {
+        margin-top: 50px;
+    }
+
+    .row-login h2 {
+        text-align: center;
+    }
+
+    .label-form {
+        padding-left: 40px;
+    }
+
+    .form-control {
+        margin-left: 37px;
+    }
+
+    .btn-primary {
+        margin-left: 37px;
+        margin-bottom: 50px;
+    }
+
+    .logo-unib {
+        width: 200px;
+        height: 200px;
+    }
+}

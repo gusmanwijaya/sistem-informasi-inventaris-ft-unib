@@ -1,0 +1,95 @@
+.btn-primary {
+    background: #d66e2d;
+    border: 2pt solid #d66e2d;
+    color: #313e89;
+}
+
+.btn-primary:hover {
+    background: transparent;
+    border: 2pt solid #d66e2d;
+    color: #ffffff;
+}
+
+.btn-import {
+    background-color: #1cc88a;
+    border: 1pt solid #1cc88a;
+    color: #ffffff;
+}
+
+.btn-import:hover {
+    background-color: transparent;
+    border: 1pt solid #1cc88a;
+    color: #1cc88a;
+}
+
+.btn-simpan {
+    background-color: #1cc88a;
+    border: 1pt solid #1cc88a;
+    color: #ffffff;
+}
+
+.btn-simpan:hover {
+    background-color: transparent;
+    border: 1pt solid #1cc88a;
+    color: #1cc88a;
+}
+
+.btn-edit {
+    background-color: #d66e2d;
+    border: 1pt solid #d66e2d;
+    color: #ffffff;
+}
+
+.btn-edit:hover {
+    background-color: transparent;
+    border: 1pt solid #d66e2d;
+    color: #d66e2d;
+}
+
+.btn-logout {
+    background-color: #e74a3b;
+    border: 2pt solid #e74a3b;
+    color: #ffffff;
+}
+
+.btn-logout:hover {
+    background-color: transparent;
+    border: 2pt solid #e74a3b;
+    color: #e74a3b;
+}
+
+.btn-tambah {
+    background-color: #4a83b7;
+    border: 1pt solid #4a83b7;
+    color: #ffffff;
+}
+
+.btn-tambah:hover {
+    background-color: transparent;
+    border: 1pt solid #4a83b7;
+    color: #4a83b7;
+}
+
+.btn-print {
+    background-color: #0c0d36;
+    border: 1pt solid #0c0d36;
+    color: #ffffff;
+}
+
+.btn-print:hover {
+    background-color: transparent;
+    border: 1pt solid #0c0d36;
+    color: #0c0d36;
+}
+
+.btn-pdf {
+    background-color: #e74a3b;
+    border: 1pt solid #e74a3b;
+    color: #ffffff;
+}
+
+.btn-pdf:hover {
+    background-color: transparent;
+    border: 1pt solid #e74a3b;
+    color: #e74a3b;
+}
